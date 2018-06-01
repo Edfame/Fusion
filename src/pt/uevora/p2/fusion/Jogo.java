@@ -4,5 +4,6 @@ public class Jogo {
 
     public static void main(String[] args) {
         System.out.println("this is a fucking test");
+        System.out.println("test2");
     }
 }
