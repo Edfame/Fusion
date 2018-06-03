@@ -2,9 +2,12 @@ package pt.uevora.p2.fusion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.Random;
 
-public class Window extends JFrame {
+public class Window extends JFrame implements ActionListener {
 
     private final int X_SIZE = 500;
     private final int Y_SIZE = 500;
@@ -12,7 +15,7 @@ public class Window extends JFrame {
     public Window(int numberOfRows) {
         setTitle("Welcome!");
         setSize(X_SIZE, Y_SIZE);
-        setResizable(false);
+        setResizable(true);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -20,16 +23,25 @@ public class Window extends JFrame {
         contentPane.setLayout(new GridLayout(numberOfRows, numberOfRows));
 
 
-        JButton[][] buttons = new JButton[2 * numberOfRows][numberOfRows];
+        JButton[][] buttons = new JButton[numberOfRows][numberOfRows];
 
-        for (int index = numberOfRows; index < 2 * numberOfRows; index++) {
+        for (int index = 0; index < numberOfRows; index++) {
             for (int index2 = 0; index2 < numberOfRows; index2++) {
                 buttons[index][index2] = new JButton();
             }
         }
-        for (int index = numberOfRows; index < 2 * numberOfRows; index++) {
+        for (int index = 0; index < numberOfRows; index++) {
             for (int index2 = 0; index2 < numberOfRows; index2++) {
                 JButton button = buttons[index][index2];
+                button.addActionListener(new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        System.out.println(button.getBackground().equals(buttons[3][3].getBackground()));
+
+                    }
+
+                });
                 button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
                 button.setBackground(randomColor(numberOfRows));
                 contentPane.add(button);
@@ -37,6 +49,7 @@ public class Window extends JFrame {
         }
 
     }
+
 
     public static Color randomColor(int numOfColors) {
 
@@ -91,5 +104,8 @@ public class Window extends JFrame {
         return color;
     }
 
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
 
+    }
 }
