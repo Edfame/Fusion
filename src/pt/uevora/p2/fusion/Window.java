@@ -9,7 +9,7 @@ public class Window extends JFrame {
     private final int X_SIZE = 500;
     private final int Y_SIZE = 500;
 
-    public Window(int numberOfRows) {
+    public Window(int numberOfRows, int numberOfColors) {
         setTitle("Welcome!");
         setSize(X_SIZE, Y_SIZE);
         setResizable(true);
@@ -32,7 +32,7 @@ public class Window extends JFrame {
 
                 button.addActionListener(new ButtonHandler(buttons, numberOfRows));
                 button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
-                button.setBackground(randomColor(numberOfRows));
+                button.setBackground(randomColor(numberOfColors));
                 contentPane.add(button);
 
             }
