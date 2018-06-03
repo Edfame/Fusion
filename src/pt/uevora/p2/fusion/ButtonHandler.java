@@ -41,6 +41,8 @@ public class ButtonHandler implements ActionListener {
     }
 
     private void buttonFidner(int clickedButtonX, int clickedButtonY) {
+        int[] cords = {clickedButtonX, clickedButtonY};
+        toDeleteButtons.add(cords);
 
         try {
             if (buttons[clickedButtonY + 1][clickedButtonX].getBackground().equals(buttons[clickedButtonX][clickedButtonY].getBackground())) {
@@ -49,11 +51,5 @@ public class ButtonHandler implements ActionListener {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("No Button found.");
         }
-    }
-
-    private void saveCords(int clickedButtonX, int clickedButtonY) {
-        int[] cords = {clickedButtonX, clickedButtonY};
-        toDeleteButtons.add(cords);
-
     }
 }
