@@ -37,14 +37,23 @@ public class Window extends JFrame implements ActionListener {
                 {
                     public void actionPerformed(ActionEvent e)
                     {
-                        System.out.println(button.getBackground().equals(buttons[3][3].getBackground()));
 
+                        System.out.println(button.getBackground().equals(buttons[3][3].getBackground()));
+                        for (int row = 0; row < numberOfRows; row++) {
+                            for (int col = 0; col < numberOfRows; col++) {
+                                if (buttons[row][col] == e.getSource()){
+                                    System.out.println("y: "+(row+1));
+                                    System.out.println("x: "+(col+1));
+                                }
+                            }
+                        }
                     }
 
                 });
                 button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
                 button.setBackground(randomColor(numberOfRows));
                 contentPane.add(button);
+
             }
         }
 
