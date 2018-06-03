@@ -3,7 +3,6 @@ package pt.uevora.p2.fusion;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class ButtonHandler implements ActionListener {
 
     private JButton[][] buttons;
     private int numberOfRows;
-    private List<Integer[]> toDeleteButtons = new ArrayList<>();
+    private List<int[]> toDeleteButtons = new ArrayList<>();
 
     public ButtonHandler(JButton[][] buttons, int numberOfRows) {
         this.buttons = buttons;
@@ -44,7 +43,7 @@ public class ButtonHandler implements ActionListener {
     private void buttonFidner(int clickedButtonX, int clickedButtonY) {
 
         try {
-            if (buttons[clickedButtonY + 1][clickedButtonX].getBackground().equals(buttons[clickedButtonX][clickedButtonY].getBackground())){
+            if (buttons[clickedButtonY + 1][clickedButtonX].getBackground().equals(buttons[clickedButtonX][clickedButtonY].getBackground())) {
 
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -52,9 +51,9 @@ public class ButtonHandler implements ActionListener {
         }
     }
 
-    private void saveCords(int clickedButtonX, int clickedButtonY){
-        int[]
-        toDeleteButtons.add();
+    private void saveCords(int clickedButtonX, int clickedButtonY) {
+        int[] cords = {clickedButtonX, clickedButtonY};
+        toDeleteButtons.add(cords);
 
     }
 }
