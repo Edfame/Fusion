@@ -2,12 +2,9 @@ package pt.uevora.p2.fusion;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.util.Random;
 
-public class Window extends JFrame implements ActionListener {
+public class Window extends JFrame {
 
     private final int X_SIZE = 500;
     private final int Y_SIZE = 500;
@@ -22,7 +19,6 @@ public class Window extends JFrame implements ActionListener {
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridLayout(numberOfRows, numberOfRows));
 
-
         JButton[][] buttons = new JButton[numberOfRows][numberOfRows];
 
         for (int index = 0; index < numberOfRows; index++) {
@@ -33,23 +29,8 @@ public class Window extends JFrame implements ActionListener {
         for (int index = 0; index < numberOfRows; index++) {
             for (int index2 = 0; index2 < numberOfRows; index2++) {
                 JButton button = buttons[index][index2];
-                button.addActionListener(new ActionListener()
-                {
-                    public void actionPerformed(ActionEvent e)
-                    {
 
-                        System.out.println(button.getBackground().equals(buttons[3][3].getBackground()));
-                        for (int row = 0; row < numberOfRows; row++) {
-                            for (int col = 0; col < numberOfRows; col++) {
-                                if (buttons[row][col] == e.getSource()){
-                                    System.out.println("y: "+(row+1));
-                                    System.out.println("x: "+(col+1));
-                                }
-                            }
-                        }
-                    }
-
-                });
+                button.addActionListener(new ButtonHandler(buttons, numberOfRows));
                 button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
                 button.setBackground(randomColor(numberOfRows));
                 contentPane.add(button);
@@ -61,7 +42,6 @@ public class Window extends JFrame implements ActionListener {
 
 
     public static Color randomColor(int numOfColors) {
-
         Color color = null;
 
         Random random = new Random();
@@ -113,8 +93,4 @@ public class Window extends JFrame implements ActionListener {
         return color;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-
-    }
 }
