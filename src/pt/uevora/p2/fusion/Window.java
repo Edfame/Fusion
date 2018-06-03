@@ -42,7 +42,7 @@ public class Window extends JFrame {
 
 
     public static Color randomColor(int numOfColors) {
-        Color color = null;
+        Color color;
 
         Random random = new Random();
 
@@ -85,8 +85,11 @@ public class Window extends JFrame {
             case 11:
                 color = Color.WHITE;
                 break;
-            default:
+            case 12:
                 color = Color.YELLOW;
+                break;
+            default:
+                color = randomColor(numOfColors);
                 break;
         }
 
