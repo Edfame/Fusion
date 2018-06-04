@@ -79,5 +79,7 @@ public class ButtonHandler implements ActionListener {
             }
         }
 
+        return;
+
     }
 }
