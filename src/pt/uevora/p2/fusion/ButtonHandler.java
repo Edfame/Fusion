@@ -3,14 +3,14 @@ package pt.uevora.p2.fusion;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ButtonHandler implements ActionListener {
 
     private JButton[][] buttons;
     private int numberOfRows;
-    private List<int[]> toDeleteButtons = new ArrayList<>();
+    Map<String,String>toDelete=new HashMap<>();
 
     public ButtonHandler(JButton[][] buttons, int numberOfRows) {
         this.buttons = buttons;
@@ -36,50 +36,45 @@ public class ButtonHandler implements ActionListener {
     }
 
     private void buttonFinder(int buttonY, int buttonX) {
-
-        int[] cords = {buttonY, buttonX};
-
+        String cords=""+buttonY+" "+buttonX;
+        if(toDelete.containsKey(cords)){
+           return;
+        }
+        toDelete.put(cords,buttons[buttonY][buttonX].getText());
         if (buttonY + 1 <= numberOfRows - 1) {
             if (buttons[buttonY + 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-                if (!(toDeleteButtons.contains(cords))) {
-                    toDeleteButtons.add(cords);
-                    System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-                    buttonFinder(buttonY + 1, buttonX);
-                }
+
+                System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
+                buttonFinder(buttonY + 1, buttonX);
+
             }
         }
 
         if (buttonY - 1 >= 0) {
             if (buttons[buttonY - 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-                if (!(toDeleteButtons.contains(cords))) {
-                    toDeleteButtons.add(cords);
-                    System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-                    buttonFinder(buttonY - 1, buttonX);
-                }
+
+                System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
+                buttonFinder(buttonY - 1, buttonX);
+
             }
         }
 
         if (buttonX + 1 <= numberOfRows - 1) {
             if (buttons[buttonY][buttonX + 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-                if (!(toDeleteButtons.contains(cords))) {
-                    toDeleteButtons.add(cords);
-                    System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-                    buttonFinder(buttonY, buttonX + 1);
-                }
+
+                System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
+                buttonFinder(buttonY, buttonX + 1);
+
             }
         }
 
         if (buttonX - 1 >= 0) {
             if (buttons[buttonY][buttonX - 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-                if (!(toDeleteButtons.contains(cords))) {
-                    toDeleteButtons.add(cords);
-                    System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-                    buttonFinder(buttonY, buttonX - 1);
-                }
+
+                System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
+                buttonFinder(buttonY, buttonX - 1);
+
             }
         }
-
-        return;
-
     }
 }
