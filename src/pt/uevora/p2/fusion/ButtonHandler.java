@@ -27,52 +27,66 @@ public class ButtonHandler implements ActionListener {
         for (int row = 0; row < numberOfRows; row++) {
             for (int col = 0; col < numberOfRows; col++) {
                 if (buttons[row][col] == button) {
-                    System.out.println("clicked y:" + (row + 1) + " x:" + (col + 1));
+                    //System.out.println("clicked y:" + (row + 1) + " x:" + (col + 1));
                     buttonFinder(row, col);
                 }
+            }
+        }
+        //printo dos buttoes que eram iguais
+        if (toDelete.keySet().size() >= 3) {
+            for (String cord : toDelete.keySet()) {
+                //System.out.println(cord);
+            }
+        }
+        //conversor de string para inteiro das coordenadas
+        if (toDelete.keySet().size() >= 3) {
+            for (String cord : toDelete.keySet()) {
+                int yCord=Integer.parseInt(cord.substring(0,cord.indexOf(" ")));
+                int xCord=Integer.parseInt(cord.substring(cord.indexOf(" ")+1,cord.length()));
+                //System.out.println(yCord);
+                //System.out.println(xCord);
+                buttons[yCord][xCord].setBackground(null);
             }
         }
 
     }
 
     private void buttonFinder(int buttonY, int buttonX) {
-        String cords = " " + buttonY + " " + buttonX;
-
+        String cords = "" + buttonY + " " + buttonX;
         if (toDelete.containsKey(cords)) {
             return;
         }
         toDelete.put(cords, buttons[buttonY][buttonX].getText());
+        if (buttonY + 1 <= numberOfRows - 1) {
+            if (buttons[buttonY + 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
 
-        if (buttonY + 1 <= numberOfRows - 1 &&
-                buttons[buttonY + 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
+                buttonFinder(buttonY + 1, buttonX);
 
-            System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-            buttonFinder(buttonY + 1, buttonX);
-
+            }
         }
 
-        if (buttonY - 1 >= 0 &&
-                buttons[buttonY - 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
+        if (buttonY - 1 >= 0) {
+            if (buttons[buttonY - 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
 
-            System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-            buttonFinder(buttonY - 1, buttonX);
+                buttonFinder(buttonY - 1, buttonX);
 
+            }
         }
 
-        if (buttonX + 1 <= numberOfRows - 1 &&
-                buttons[buttonY][buttonX + 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
+        if (buttonX + 1 <= numberOfRows - 1) {
+            if (buttons[buttonY][buttonX + 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
 
-            System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-            buttonFinder(buttonY, buttonX + 1);
+                buttonFinder(buttonY, buttonX + 1);
 
+            }
         }
 
-        if (buttonX - 1 >= 0 &&
-                buttons[buttonY][buttonX - 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
+        if (buttonX - 1 >= 0) {
+            if (buttons[buttonY][buttonX - 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
 
-            System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-            buttonFinder(buttonY, buttonX - 1);
+                buttonFinder(buttonY, buttonX - 1);
 
+            }
         }
     }
 }
