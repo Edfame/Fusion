@@ -30,6 +30,7 @@ public class Window extends JFrame {
             for (int index2 = 0; index2 < numberOfRows; index2++) {
                 JButton button = buttons[index][index2];
 
+                button.setText("Y: " + (index + 1) + " X: " + (index2 + 1));
                 button.addActionListener(new ButtonHandler(buttons, numberOfRows));
                 button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
                 button.setBackground(randomColor(numberOfColors));

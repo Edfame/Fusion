@@ -10,7 +10,7 @@ public class ButtonHandler implements ActionListener {
 
     private JButton[][] buttons;
     private int numberOfRows;
-    Map<String,String>toDelete=new HashMap<>();
+    private Map<String, String> toDelete = new HashMap<>();
 
     public ButtonHandler(JButton[][] buttons, int numberOfRows) {
         this.buttons = buttons;
@@ -36,45 +36,43 @@ public class ButtonHandler implements ActionListener {
     }
 
     private void buttonFinder(int buttonY, int buttonX) {
-        String cords=""+buttonY+" "+buttonX;
-        if(toDelete.containsKey(cords)){
-           return;
+        String cords = " " + buttonY + " " + buttonX;
+
+        if (toDelete.containsKey(cords)) {
+            return;
         }
-        toDelete.put(cords,buttons[buttonY][buttonX].getText());
-        if (buttonY + 1 <= numberOfRows - 1) {
-            if (buttons[buttonY + 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
+        toDelete.put(cords, buttons[buttonY][buttonX].getText());
 
-                System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-                buttonFinder(buttonY + 1, buttonX);
+        if (buttonY + 1 <= numberOfRows - 1 &&
+                buttons[buttonY + 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
 
-            }
-        }
+            System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
+            buttonFinder(buttonY + 1, buttonX);
 
-        if (buttonY - 1 >= 0) {
-            if (buttons[buttonY - 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-
-                System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-                buttonFinder(buttonY - 1, buttonX);
-
-            }
         }
 
-        if (buttonX + 1 <= numberOfRows - 1) {
-            if (buttons[buttonY][buttonX + 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
+        if (buttonY - 1 >= 0 &&
+                buttons[buttonY - 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
 
-                System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-                buttonFinder(buttonY, buttonX + 1);
+            System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
+            buttonFinder(buttonY - 1, buttonX);
 
-            }
         }
 
-        if (buttonX - 1 >= 0) {
-            if (buttons[buttonY][buttonX - 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
+        if (buttonX + 1 <= numberOfRows - 1 &&
+                buttons[buttonY][buttonX + 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
 
-                System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
-                buttonFinder(buttonY, buttonX - 1);
+            System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
+            buttonFinder(buttonY, buttonX + 1);
 
-            }
+        }
+
+        if (buttonX - 1 >= 0 &&
+                buttons[buttonY][buttonX - 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
+
+            System.out.println("added y:" + (buttonY + 1) + " x:" + (buttonX + 1));
+            buttonFinder(buttonY, buttonX - 1);
+
         }
     }
 }
