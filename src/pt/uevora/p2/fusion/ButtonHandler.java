@@ -41,11 +41,25 @@ public class ButtonHandler implements ActionListener {
         //conversor de string para inteiro das coordenadas
         if (toDelete.keySet().size() >= 3) {
             for (String cord : toDelete.keySet()) {
-                int yCord=Integer.parseInt(cord.substring(0,cord.indexOf(" ")));
-                int xCord=Integer.parseInt(cord.substring(cord.indexOf(" ")+1,cord.length()));
+                int yCord = Integer.parseInt(cord.substring(0, cord.indexOf(" ")));
+                int xCord = Integer.parseInt(cord.substring(cord.indexOf(" ") + 1, cord.length()));
                 //System.out.println(yCord);
                 //System.out.println(xCord);
                 buttons[yCord][xCord].setBackground(null);
+            }
+        }
+        if (toDelete.keySet().size() >= 3) {
+            for (String cord : toDelete.keySet()) {
+                int yCord = Integer.parseInt(cord.substring(0, cord.indexOf(" ")));
+                int xCord = Integer.parseInt(cord.substring(cord.indexOf(" ") + 1, cord.length()));
+                //System.out.println(yCord);
+                //System.out.println(xCord);
+                if(yCord-1>=0){
+                    if(!buttons[yCord][xCord].getBackground().equals(buttons[yCord-1][xCord].getBackground())){
+                        buttons[yCord][xCord].setBackground(buttons[yCord-1][xCord].getBackground());
+                        buttons[yCord-1][xCord].setBackground(null);
+                    }
+                }
             }
         }
 

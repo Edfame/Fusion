@@ -2,6 +2,7 @@ package pt.uevora.p2.fusion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Map;
 import java.util.Random;
 
 public class Window extends JFrame {
@@ -35,6 +36,7 @@ public class Window extends JFrame {
                 button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
                 button.setBackground(randomColor(numberOfColors));
                 contentPane.add(button);
+
 
             }
         }
