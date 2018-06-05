@@ -2,18 +2,20 @@ package pt.uevora.p2.fusion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Window extends JFrame {
 
     private final int X_SIZE = 500;
     private final int Y_SIZE = 500;
+    private List<Color> colorsUsed;
 
     public Window(int numberOfRows, int numberOfColors) {
         setTitle("Welcome!");
         setSize(X_SIZE, Y_SIZE);
         setResizable(true);
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         Container contentPane = getContentPane();
@@ -26,14 +28,20 @@ public class Window extends JFrame {
                 buttons[index][index2] = new JButton();
             }
         }
+
+        colorsUsed = new ArrayList<>();
+
         for (int index = 0; index < numberOfRows; index++) {
             for (int index2 = 0; index2 < numberOfRows; index2++) {
                 JButton button = buttons[index][index2];
 
+                Color randomColor = randomColor(numberOfColors);
+                colorsUsed.add(randomColor);
+
                 button.setText("Y: " + (index + 1) + " X: " + (index2 + 1));
                 button.addActionListener(new ButtonHandler(buttons, numberOfRows));
                 button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
-                button.setBackground(randomColor(numberOfColors));
+                button.setBackground(randomColor);
                 contentPane.add(button);
 
 
@@ -42,6 +50,9 @@ public class Window extends JFrame {
 
     }
 
+    public List<Color> getColorsUsed() {
+        return colorsUsed;
+    }
 
     public static Color randomColor(int numOfColors) {
         Color color;

@@ -65,7 +65,9 @@ public class ButtonHandler implements ActionListener {
     }
 
     private void buttonFinder(int buttonY, int buttonX) {
+
         String cords = "" + buttonY + " " + buttonX;
+
         if (toDelete.containsKey(cords)) {
             return;
         }
@@ -78,21 +80,18 @@ public class ButtonHandler implements ActionListener {
 
             }
         }
-
         if (buttonY - 1 >= 0) {
             if (buttons[buttonY - 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
                 buttonFinder(buttonY - 1, buttonX);
 
             }
         }
-
         if (buttonX + 1 <= numberOfRows - 1) {
             if (buttons[buttonY][buttonX + 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
                 buttonFinder(buttonY, buttonX + 1);
 
             }
         }
-
         if (buttonX - 1 >= 0) {
             if (buttons[buttonY][buttonX - 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
                 buttonFinder(buttonY, buttonX - 1);
