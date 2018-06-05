@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class ButtonHandler implements ActionListener {
 
@@ -18,46 +19,39 @@ public class ButtonHandler implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent event) {
 
-        JButton button = (JButton) e.getSource();
+        JButton button = (JButton) event.getSource();
 
         //exemple
         //System.out.println(button.getBackground().equals(buttons[3][3].getBackground()));
         for (int row = 0; row < numberOfRows; row++) {
             for (int col = 0; col < numberOfRows; col++) {
-                if (buttons[row][col] == button) {
+                if (buttons[row][col].equals(button)) {
                     //System.out.println("clicked y:" + (row + 1) + " x:" + (col + 1));
                     buttonFinder(row, col);
                 }
             }
         }
-        //print dos buttoes que eram iguais
-        if (toDelete.keySet().size() >= 3) {
-            for (String cord : toDelete.keySet()) {
-                //System.out.println(cord);
-            }
-        }
+
         //conversor de string para inteiro das coordenadas
         if (toDelete.keySet().size() >= 3) {
             for (String cord : toDelete.keySet()) {
                 int yCord = Integer.parseInt(cord.substring(0, cord.indexOf(" ")));
                 int xCord = Integer.parseInt(cord.substring(cord.indexOf(" ") + 1, cord.length()));
-                //System.out.println(yCord);
-                //System.out.println(xCord);
+                System.out.println("Button: " + (yCord + 1) + " " + (xCord + 1));
                 buttons[yCord][xCord].setBackground(null);
-            }
-        }
-        if (toDelete.keySet().size() >= 3) {
-            for (String cord : toDelete.keySet()) {
-                int yCord = Integer.parseInt(cord.substring(0, cord.indexOf(" ")));
-                int xCord = Integer.parseInt(cord.substring(cord.indexOf(" ") + 1, cord.length()));
-                //System.out.println(yCord + " " + xCord);
-                if(yCord-1>=0){
-                    if(!buttons[yCord][xCord].getBackground().equals(buttons[yCord-1][xCord].getBackground())){
-                        buttons[yCord][xCord].setBackground(buttons[yCord-1][xCord].getBackground());
-                        buttons[yCord-1][xCord].setBackground(null);
+
+                while (yCord >= 0) {
+                    if (yCord == 0) {
+                        buttons[yCord][xCord].setBackground(Jogo.win.getColorsUsed().get(new Random().nextInt(Jogo.win.getColorsUsed().size())));
+                        break;
                     }
+                    if (!buttons[yCord][xCord].getBackground().equals(buttons[yCord - 1][xCord].getBackground())) {
+                        buttons[yCord][xCord].setBackground(buttons[yCord - 1][xCord].getBackground());
+                        buttons[yCord - 1][xCord].setBackground(null);
+                    }
+                    yCord--;
                 }
             }
         }
