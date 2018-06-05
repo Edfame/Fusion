@@ -13,6 +13,7 @@ public class Window extends JFrame {
     private final int X_SIZE = 500;
     private final int Y_SIZE = 500;
     private List<Color> colorsUsed;
+    private JLabel score;
 
     public Window(int numberOfRows, int numberOfColors) {
         setTitle("Welcome!");
@@ -37,7 +38,7 @@ public class Window extends JFrame {
         //Adding components to the North container
         contentPaneNorth.setLayout(new GridLayout(1,2));
         JLabel scoreText = new JLabel("Points:");
-        JLabel score = new JLabel("0");
+        score = new JLabel("0");
         contentPaneNorth.add(scoreText);
         contentPaneNorth.add(score);
 
@@ -89,6 +90,10 @@ public class Window extends JFrame {
 
     public List<Color> getColorsUsed() {
         return colorsUsed;
+    }
+
+    public void setScore(int newScoreText) {
+        this.score.setText("" + (Integer.parseInt(this.score.getText()) + newScoreText));
     }
 
     public static Color randomColor(int numOfColors) {
