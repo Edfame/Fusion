@@ -2,8 +2,10 @@ package pt.uevora.p2.fusion;
 
 public class Jogo {
 
+    static Window win;
+
     public static void main(String[] args) {
-        Window win = new Window(4);
+        win = new Window(5,3);
         win.setVisible(true);
 
     }
