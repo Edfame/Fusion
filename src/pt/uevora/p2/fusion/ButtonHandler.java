@@ -32,7 +32,7 @@ public class ButtonHandler implements ActionListener {
                 }
             }
         }
-        //printo dos buttoes que eram iguais
+        //print dos buttoes que eram iguais
         if (toDelete.keySet().size() >= 3) {
             for (String cord : toDelete.keySet()) {
                 //System.out.println(cord);
@@ -52,8 +52,7 @@ public class ButtonHandler implements ActionListener {
             for (String cord : toDelete.keySet()) {
                 int yCord = Integer.parseInt(cord.substring(0, cord.indexOf(" ")));
                 int xCord = Integer.parseInt(cord.substring(cord.indexOf(" ") + 1, cord.length()));
-                //System.out.println(yCord);
-                //System.out.println(xCord);
+                //System.out.println(yCord + " " + xCord);
                 if(yCord-1>=0){
                     if(!buttons[yCord][xCord].getBackground().equals(buttons[yCord-1][xCord].getBackground())){
                         buttons[yCord][xCord].setBackground(buttons[yCord-1][xCord].getBackground());
@@ -70,10 +69,11 @@ public class ButtonHandler implements ActionListener {
         if (toDelete.containsKey(cords)) {
             return;
         }
+
         toDelete.put(cords, buttons[buttonY][buttonX].getText());
+
         if (buttonY + 1 <= numberOfRows - 1) {
             if (buttons[buttonY + 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-
                 buttonFinder(buttonY + 1, buttonX);
 
             }
@@ -81,7 +81,6 @@ public class ButtonHandler implements ActionListener {
 
         if (buttonY - 1 >= 0) {
             if (buttons[buttonY - 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-
                 buttonFinder(buttonY - 1, buttonX);
 
             }
@@ -89,7 +88,6 @@ public class ButtonHandler implements ActionListener {
 
         if (buttonX + 1 <= numberOfRows - 1) {
             if (buttons[buttonY][buttonX + 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-
                 buttonFinder(buttonY, buttonX + 1);
 
             }
@@ -97,7 +95,6 @@ public class ButtonHandler implements ActionListener {
 
         if (buttonX - 1 >= 0) {
             if (buttons[buttonY][buttonX - 1].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
-
                 buttonFinder(buttonY, buttonX - 1);
 
             }

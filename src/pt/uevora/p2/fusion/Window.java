@@ -2,7 +2,6 @@ package pt.uevora.p2.fusion;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
 import java.util.Random;
 
 public class Window extends JFrame {
