@@ -12,6 +12,7 @@ public class ButtonHandler implements ActionListener {
     private JButton[][] buttons;
     private int numberOfRows;
     private Map<String, String> toDelete = new HashMap<>();
+    private int score = 0;
 
     public ButtonHandler(JButton[][] buttons, int numberOfRows) {
         this.buttons = buttons;
@@ -39,7 +40,7 @@ public class ButtonHandler implements ActionListener {
             for (String cord : toDelete.keySet()) {
                 int yCord = Integer.parseInt(cord.substring(0, cord.indexOf(" ")));
                 int xCord = Integer.parseInt(cord.substring(cord.indexOf(" ") + 1, cord.length()));
-                System.out.println("Button: " + (yCord + 1) + " " + (xCord + 1));
+                //System.out.println("Button: " + (yCord + 1) + " " + (xCord + 1));
                 buttons[yCord][xCord].setBackground(null);
 
                 while (yCord >= 0) {
@@ -54,19 +55,21 @@ public class ButtonHandler implements ActionListener {
                     yCord--;
                 }
             }
+            toDelete.clear();
+            Jogo.win.setScore(score);
         }
-
     }
 
     private void buttonFinder(int buttonY, int buttonX) {
 
-        String cords = "" + buttonY + " " + buttonX;
+        String cords = buttonY + " " + buttonX;
 
         if (toDelete.containsKey(cords)) {
             return;
         }
 
         toDelete.put(cords, buttons[buttonY][buttonX].getText());
+        score += 5;
 
         if (buttonY + 1 <= numberOfRows - 1) {
             if (buttons[buttonY + 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
