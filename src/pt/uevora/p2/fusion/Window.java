@@ -10,13 +10,13 @@ import java.util.Random;
 
 public class Window extends JFrame {
 
-    private final int X_SIZE = 500;
-    private final int Y_SIZE = 500;
+    private final int X_SIZE = 1000;
+    private final int Y_SIZE = 1000;
     private List<Color> colorsUsed;
     private JLabel score;
 
     public Window(int numberOfRows, int numberOfColors) {
-        setTitle("Welcome!");
+        setTitle("Fusion v1.0");
         setSize(X_SIZE, Y_SIZE);
         setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -37,7 +37,8 @@ public class Window extends JFrame {
 
         //Adding components to the North container
         contentPaneNorth.setLayout(new GridLayout(1,2));
-        JLabel scoreText = new JLabel("Points:");
+        JLabel scoreText = new JLabel("Points: ");
+        scoreText.setHorizontalAlignment(SwingConstants.RIGHT);
         score = new JLabel("0");
         contentPaneNorth.add(scoreText);
         contentPaneNorth.add(score);
@@ -51,7 +52,8 @@ public class Window extends JFrame {
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                //dispose();
+                System.exit(0);
             }
         });
         contentPaneSouth.add(quitButton);

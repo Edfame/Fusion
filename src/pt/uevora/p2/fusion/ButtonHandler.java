@@ -40,7 +40,7 @@ public class ButtonHandler implements ActionListener {
             for (String cord : toDelete.keySet()) {
                 int yCord = Integer.parseInt(cord.substring(0, cord.indexOf(" ")));
                 int xCord = Integer.parseInt(cord.substring(cord.indexOf(" ") + 1, cord.length()));
-                System.out.println("Button: " + (yCord + 1) + " " + (xCord + 1));
+                //System.out.println("Button: " + (yCord + 1) + " " + (xCord + 1));
                 buttons[yCord][xCord].setBackground(null);
 
                 while (yCord >= 0) {

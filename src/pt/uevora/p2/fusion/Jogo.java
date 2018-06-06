@@ -5,7 +5,7 @@ public class Jogo {
     static Window win;
 
     public static void main(String[] args) {
-        win = new Window(5,3);
+        win = new Window(10,5);
         win.setVisible(true);
 
     }
