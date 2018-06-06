@@ -55,6 +55,7 @@ public class ButtonHandler implements ActionListener {
                     yCord--;
                 }
             }
+            toDelete.clear();
             Jogo.win.setScore(score);
         }
     }

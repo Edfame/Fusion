@@ -46,6 +46,7 @@ public class Window extends JFrame {
         contentPaneSouth.setLayout(new GridLayout(1,1));
         JButton quitButton = new JButton("Quit");
         quitButton.setBackground(Color.RED);
+
         //telling quitButton what to do
         quitButton.addActionListener(new ActionListener() {
             @Override
@@ -81,8 +82,6 @@ public class Window extends JFrame {
                 button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
                 button.setBackground(randomColor);
                 contentPaneCenter.add(button);
-
-
             }
         }
 
