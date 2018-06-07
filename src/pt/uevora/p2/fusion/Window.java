@@ -88,9 +88,6 @@ public class Window extends JFrame {
                 color = Color.YELLOW;
                 break;
         }
-
         return color;
     }
-
-
 }
