@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class ButtonHandler implements ActionListener {
 
@@ -51,6 +52,11 @@ public class ButtonHandler implements ActionListener {
                     if (!buttons[yCord][xCord].getBackground().equals(buttons[yCord - 1][xCord].getBackground())) {
                         buttons[yCord][xCord].setBackground(buttons[yCord - 1][xCord].getBackground());
                         buttons[yCord - 1][xCord].setBackground(null);
+                        try {
+                            TimeUnit.MICROSECONDS.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                     yCord--;
                 }
@@ -59,6 +65,8 @@ public class ButtonHandler implements ActionListener {
             InicialWindow.win.setScore(score);
         }
     }
+
+
 
     private void buttonFinder(int buttonY, int buttonX) {
 
