@@ -36,7 +36,7 @@ public class Window extends JFrame {
         contentPane.add(contentPaneSouth, BorderLayout.SOUTH);
 
         //Adding components to the North container
-        contentPaneNorth.setLayout(new GridLayout(1,2));
+        contentPaneNorth.setLayout(new GridLayout(1, 2));
         JLabel scoreText = new JLabel("Points: ");
         scoreText.setHorizontalAlignment(SwingConstants.RIGHT);
         score = new JLabel("0");
@@ -44,7 +44,7 @@ public class Window extends JFrame {
         contentPaneNorth.add(score);
 
         //Adding components to the South container
-        contentPaneSouth.setLayout(new GridLayout(1,1));
+        contentPaneSouth.setLayout(new GridLayout(1, 1));
         JButton quitButton = new JButton("Quit");
         quitButton.setBackground(Color.RED);
 
@@ -52,8 +52,8 @@ public class Window extends JFrame {
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //dispose();
-                System.exit(0);
+                dispose();
+                InicialWindow.run();
             }
         });
         contentPaneSouth.add(quitButton);

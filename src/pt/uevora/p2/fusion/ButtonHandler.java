@@ -45,7 +45,7 @@ public class ButtonHandler implements ActionListener {
 
                 while (yCord >= 0) {
                     if (yCord == 0) {
-                        buttons[yCord][xCord].setBackground(Jogo.win.getColorsUsed().get(new Random().nextInt(Jogo.win.getColorsUsed().size())));
+                        buttons[yCord][xCord].setBackground(InicialWindow.win.getColorsUsed().get(new Random().nextInt(InicialWindow.win.getColorsUsed().size())));
                         break;
                     }
                     if (!buttons[yCord][xCord].getBackground().equals(buttons[yCord - 1][xCord].getBackground())) {
@@ -56,7 +56,7 @@ public class ButtonHandler implements ActionListener {
                 }
             }
             toDelete.clear();
-            Jogo.win.setScore(score);
+            InicialWindow.win.setScore(score);
         }
     }
 
