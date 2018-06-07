@@ -4,22 +4,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Window extends JFrame {
 
-    private final int X_SIZE = 1000;
-    private final int Y_SIZE = 1000;
     private List<Color> colorsUsed;
     private JLabel score;
 
-    public Window(int numberOfRows, int numberOfColors) {
+    public Window(int numberOfRows, int numberOfColors, int size) {
         setTitle("Fusion v1.0");
-        setSize(X_SIZE, Y_SIZE);
+        setSize(size, size);
         setResizable(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                MainWindow.main.setVisible(true);
+            }
+        });
 
         //General container w/BorderLayout
         Container contentPane = getContentPane();
@@ -36,7 +40,7 @@ public class Window extends JFrame {
         contentPane.add(contentPaneSouth, BorderLayout.SOUTH);
 
         //Adding components to the North container
-        contentPaneNorth.setLayout(new GridLayout(1,2));
+        contentPaneNorth.setLayout(new GridLayout(1, 2));
         JLabel scoreText = new JLabel("Points: ");
         scoreText.setHorizontalAlignment(SwingConstants.RIGHT);
         score = new JLabel("0");
@@ -44,7 +48,7 @@ public class Window extends JFrame {
         contentPaneNorth.add(score);
 
         //Adding components to the South container
-        contentPaneSouth.setLayout(new GridLayout(1,1));
+        contentPaneSouth.setLayout(new GridLayout(1, 1));
         JButton quitButton = new JButton("Quit");
         quitButton.setBackground(Color.RED);
 
@@ -52,8 +56,7 @@ public class Window extends JFrame {
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //dispose();
-                System.exit(0);
+                MainWindow.main.setVisible(true);
             }
         });
         contentPaneSouth.add(quitButton);
@@ -79,22 +82,14 @@ public class Window extends JFrame {
                 Color randomColor = randomColor(numberOfColors);
                 colorsUsed.add(randomColor);
 
-                button.setText("Y: " + (index + 1) + " X: " + (index2 + 1));
+                //button.setText("Y: " + (index + 1) + " X: " + (index2 + 1));
                 button.addActionListener(new ButtonHandler(buttons, numberOfRows));
-                button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
+                button.setPreferredSize(new Dimension(size / numberOfRows, size / numberOfRows));
                 button.setBackground(randomColor);
                 contentPaneCenter.add(button);
             }
         }
 
-    }
-
-    public List<Color> getColorsUsed() {
-        return colorsUsed;
-    }
-
-    public void setScore(int newScoreText) {
-        this.score.setText("" + (Integer.parseInt(this.score.getText()) + newScoreText));
     }
 
     public static Color randomColor(int numOfColors) {
@@ -118,16 +113,16 @@ public class Window extends JFrame {
                 color = Color.BLUE;
                 break;
             case 4:
-                color = Color.CYAN;
+                color = Color.MAGENTA;
                 break;
             case 5:
-                color = Color.DARK_GRAY;
+                color = Color.YELLOW;
                 break;
             case 6:
                 color = Color.GRAY;
                 break;
             case 7:
-                color = Color.LIGHT_GRAY;
+                color = Color.RED;
                 break;
             case 8:
                 color = Color.MAGENTA;
@@ -135,21 +130,19 @@ public class Window extends JFrame {
             case 9:
                 color = Color.PINK;
                 break;
-            case 10:
-                color = Color.RED;
-                break;
-            case 11:
-                color = Color.WHITE;
-                break;
-            case 12:
-                color = Color.YELLOW;
-                break;
             default:
-                color = randomColor(numOfColors);
-                break;
+                color = Color.BLACK;
         }
 
         return color;
+    }
+
+    public List<Color> getColorsUsed() {
+        return colorsUsed;
+    }
+
+    public void setScore(int newScoreText) {
+        this.score.setText("" + (Integer.parseInt(this.score.getText()) + newScoreText));
     }
 
 }

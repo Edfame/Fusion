@@ -4,8 +4,8 @@ public class Jogo {
 
     static Window win;
 
-    public static void main(String[] args) {
-        win = new Window(10,5);
+    public Jogo(int numberOfRows,int numberOfColors,int size){
+        win = new Window(numberOfRows,numberOfColors,size);
         win.setVisible(true);
 
     }
