@@ -51,6 +51,7 @@ public class ButtonHandler implements ActionListener {
                     }*/
                     if (yCord == 0) {
                         buttons[yCord][xCord].setBackground(InicialWindow.win.getColorsUsed().get(new Random().nextInt(InicialWindow.win.getColorsUsed().size())));
+                        //System.out.println(InicialWindow.win.getColorsUsed().get(new Random().nextInt(InicialWindow.win.getColorsUsed().size())).toString());
                         break;
                     }
                     if (!buttons[yCord][xCord].getBackground().equals(buttons[yCord - 1][xCord].getBackground())) {
