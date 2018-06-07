@@ -7,7 +7,6 @@ import java.awt.event.*;
 public class OptionsWindow extends JFrame implements MouseListener {
 
     private JLabel error;
-    static JFrame main;
 
     public OptionsWindow() {
         setTitle("Options");

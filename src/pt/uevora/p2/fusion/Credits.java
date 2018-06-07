@@ -23,10 +23,10 @@ public class Credits extends JFrame {
         JLabel worckInfo = new JLabel("Estre trabalho foi realizado no ambito da disciplina de Programação 2 pelos alunos:");
         worckInfo.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JLabel yaroslav = new JLabel("Yaroslav Kolodiy n39859 Curso E.I");
+        JLabel yaroslav = new JLabel("Yaroslav Kolodiy nº 39859 Curso E.I.");
         yaroslav.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JLabel eduardo = new JLabel("Eduardo MEdeiros n39873 Cruso E.I");
+        JLabel eduardo = new JLabel("Eduardo Medeiros nº 39873 Cruso E.I.");
         eduardo.setHorizontalAlignment(SwingConstants.CENTER);
 
         info.add(worckInfo);
