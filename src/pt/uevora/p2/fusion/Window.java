@@ -154,8 +154,6 @@ public class Window extends JFrame {
                 color = randomColor(numOfColors);
                 break;
         }
-
         return color;
     }
-
 }
