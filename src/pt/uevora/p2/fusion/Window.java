@@ -69,16 +69,11 @@ public class Window extends JFrame {
         //JButtons that will be the "pieces" of the game
         JButton[][] buttons = new JButton[numberOfRows][numberOfRows];
 
-        for (int index = 0; index < numberOfRows; index++) {
-            for (int index2 = 0; index2 < numberOfRows; index2++) {
-                buttons[index][index2] = new JButton();
-            }
-        }
-
         colorsUsed = new ArrayList<>();
 
         for (int index = 0; index < numberOfRows; index++) {
             for (int index2 = 0; index2 < numberOfRows; index2++) {
+                buttons[index][index2] = new JButton();
                 JButton button = buttons[index][index2];
 
                 Color randomColor = randomColor(numberOfColors);
