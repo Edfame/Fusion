@@ -4,22 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Window extends JFrame {
 
-    private final int X_SIZE = 1000;
-    private final int Y_SIZE = 1000;
     private List<Color> colorsUsed;
     private JLabel score;
 
-    public Window(int numberOfRows, int numberOfColors) {
+    public Window(int numberOfRows, int numberOfColors, int size) {
         setTitle("Fusion v1.0");
-        setSize(X_SIZE, Y_SIZE);
+        setSize(size, size);
         setResizable(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                InicialWindow.run();
+                dispose();
+            }
+        });
 
         //General container w/BorderLayout
         Container contentPane = getContentPane();
@@ -52,8 +57,8 @@ public class Window extends JFrame {
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 InicialWindow.run();
+                dispose();
             }
         });
         contentPaneSouth.add(quitButton);
@@ -81,8 +86,9 @@ public class Window extends JFrame {
 
                 button.setText("Y: " + (index + 1) + " X: " + (index2 + 1));
                 button.addActionListener(new ButtonHandler(buttons, numberOfRows));
-                button.setPreferredSize(new Dimension(X_SIZE / numberOfRows, Y_SIZE / numberOfRows));
+                button.setPreferredSize(new Dimension(size / numberOfRows, size / numberOfRows));
                 button.setBackground(randomColor);
+                //button.setBorderPainted(false);
                 contentPaneCenter.add(button);
             }
         }

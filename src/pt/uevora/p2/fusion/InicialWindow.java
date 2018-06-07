@@ -24,12 +24,13 @@ public class InicialWindow extends MouseAdapter implements ActionListener {
         //Container
         Container inicialContainer = inicialFrame.getContentPane();
         inicialContainer.setLayout(new GridLayout(5, 1));
-        inicialContainer.setBackground(Color.WHITE);
+        inicialContainer.setBackground(Color.GRAY);
 
         //Labels
         JLabel name = new JLabel(inicialFrame.getTitle());
         JLabel devs = new JLabel("Developed by: Eduardo Medeiros and Yaroslav Kolodiy");
 
+        name.setBackground(Color.LIGHT_GRAY);
         name.setHorizontalAlignment(SwingConstants.CENTER);
         devs.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -65,8 +66,9 @@ public class InicialWindow extends MouseAdapter implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         //Default setings
-        int defaultNumberOfColors = 2;
-        int defaultNumberOfRows = 5;
+        int defaultNumberOfColors = 3;
+        int defaultNumberOfRows = 6;
+        int defaultSize = 500;
 
         if (e.getSource() instanceof JButton) {
             JButton button = (JButton) e.getSource();
@@ -74,13 +76,15 @@ public class InicialWindow extends MouseAdapter implements ActionListener {
 
             //Play button pressed
             if (buttonText.equalsIgnoreCase("play")) {
-                win = new Window(defaultNumberOfRows, defaultNumberOfColors);
+                win = new Window(defaultNumberOfRows, defaultNumberOfColors, defaultSize);
                 win.setVisible(true);
                 inicialFrame.dispose();
 
                 //Options button pressed
             } else if (buttonText.equalsIgnoreCase("options")) {
-                JOptionPane.showMessageDialog(null, "test");
+                OptionsWindow optWin = new OptionsWindow();
+                optWin.setVisible(true);
+                inicialFrame.dispose();
 
                 //Quit button pressed
             } else if (buttonText.equalsIgnoreCase("quit")) {
