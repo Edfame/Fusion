@@ -12,6 +12,7 @@ public class OptionsWindow extends JFrame implements MouseListener {
         setTitle("Options");
         setSize(400, 200);
         setResizable(false);
+        setLocationRelativeTo(null);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 InicialWindow.run();
@@ -26,8 +27,7 @@ public class OptionsWindow extends JFrame implements MouseListener {
         JLabel howManyRows = new JLabel("How many rows? ");
         JLabel howManyColors = new JLabel("How many Colors:");
         JLabel sizeText = new JLabel("What is the size:");
-        JLabel emptyLabel1 = new JLabel("");
-        JLabel emptyLabel2 = new JLabel("");
+        JLabel emptyLabel = new JLabel("");
         error = new JLabel("");
 
         howManyRows.setHorizontalAlignment(SwingConstants.CENTER);
@@ -90,18 +90,31 @@ public class OptionsWindow extends JFrame implements MouseListener {
             }
         });
 
+        JButton back = new JButton();
+        back.setBorderPainted(false);
+        back.setText("Back");
+        back.setBackground(Color.WHITE);
+        back.addMouseListener(this);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                InicialWindow.run();
+                dispose();
+            }
+        });
+
         contentPane.add(howManyRows);
         contentPane.add(rows);
-        contentPane.add(emptyLabel1);
+        contentPane.add(submit);
         contentPane.add(howManyColors);
         contentPane.add(colors);
-        contentPane.add(error);
+        contentPane.add(clear);
         contentPane.add(sizeText);
         contentPane.add(size);
-        contentPane.add(emptyLabel2);
-        contentPane.add(submit);
-        contentPane.add(clear);
         contentPane.add(credits);
+        contentPane.add(emptyLabel);
+        contentPane.add(error);
+        contentPane.add(back);
 
 
     }

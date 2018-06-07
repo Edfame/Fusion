@@ -20,6 +20,7 @@ public class InicialWindow extends MouseAdapter implements ActionListener {
         inicialFrame.setVisible(true);
         inicialFrame.setResizable(false);
         inicialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        inicialFrame.setLocationRelativeTo(null);
 
         //Container
         Container inicialContainer = inicialFrame.getContentPane();

@@ -11,6 +11,7 @@ public class Credits extends JFrame {
         setLocation(300, 300);
         setResizable(false);
         setVisible(true);
+        setLocationRelativeTo(null);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 OptionsWindow optWind = new OptionsWindow();

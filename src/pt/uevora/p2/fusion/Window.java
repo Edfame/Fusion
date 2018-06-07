@@ -19,6 +19,7 @@ public class Window extends JFrame {
         setTitle("Fusion v1.0");
         setSize(size, size);
         setResizable(true);
+        setLocationRelativeTo(null);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 InicialWindow.run();
