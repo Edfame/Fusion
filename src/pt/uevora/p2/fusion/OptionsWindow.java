@@ -10,7 +10,7 @@ public class OptionsWindow extends JFrame implements MouseListener {
 
     public OptionsWindow() {
         setTitle("Options");
-        setSize(400, 200);
+        setSize(750, 250);
         setResizable(false);
         setLocationRelativeTo(null);
         addWindowListener(new WindowAdapter() {
@@ -20,16 +20,18 @@ public class OptionsWindow extends JFrame implements MouseListener {
             }
         });
 
+        //Frame's container w/ a GridLayout
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridLayout(4, 3));
         contentPane.setBackground(Color.WHITE);
 
-        JLabel howManyRows = new JLabel("How many rows? ");
+        JLabel howManyRows = new JLabel("How many rows/columns? ");
         JLabel howManyColors = new JLabel("How many Colors:");
         JLabel sizeText = new JLabel("What is the size:");
         JLabel emptyLabel = new JLabel("");
         error = new JLabel("");
 
+        //changing label's proprieties
         howManyRows.setHorizontalAlignment(SwingConstants.CENTER);
         howManyColors.setHorizontalAlignment(SwingConstants.CENTER);
         sizeText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -40,6 +42,7 @@ public class OptionsWindow extends JFrame implements MouseListener {
         JTextField colors = new JTextField(15);
         JTextField size = new JTextField(15);
 
+        //creating and changing the proprieties of the submit button
         JButton submit = new JButton();
         submit.setBorderPainted(false);
         submit.setText("SUBMIT");
@@ -50,10 +53,9 @@ public class OptionsWindow extends JFrame implements MouseListener {
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
                     if (Integer.parseInt(colors.getText()) > 9) {
-                        throw new ArithmeticException("Number of Color is invalid need to be less than 9");
+                        throw new ArithmeticException("Number of Color is invalid, 2 <= Colors <= 9");
                     }
-                    InicialWindow.win = new Window(Integer.parseInt(rows.getText()), Integer.parseInt(colors.getText()), Integer.parseInt(size.getText()));
-                    InicialWindow.win.setVisible(true);
+                    InicialWindow.newWin(Integer.parseInt(rows.getText()), Integer.parseInt(colors.getText()), Integer.parseInt(size.getText()));
                     dispose();
                 } catch (java.lang.NumberFormatException e) {
                     writeError("(invalid input)");
@@ -63,6 +65,7 @@ public class OptionsWindow extends JFrame implements MouseListener {
             }
         });
 
+        //creating and changing the proprieties of the clear button
         JButton clear = new JButton();
         clear.setBorderPainted(false);
         clear.setText("Clear");
@@ -77,6 +80,7 @@ public class OptionsWindow extends JFrame implements MouseListener {
             }
         });
 
+        //creating and changing the proprieties of the credits button
         JButton credits = new JButton();
         credits.setBorderPainted(false);
         credits.setText("Credits");
@@ -90,6 +94,7 @@ public class OptionsWindow extends JFrame implements MouseListener {
             }
         });
 
+        //creating and changing the proprieties of the back button
         JButton back = new JButton();
         back.setBorderPainted(false);
         back.setText("Back");
@@ -103,26 +108,34 @@ public class OptionsWindow extends JFrame implements MouseListener {
             }
         });
 
+        //1st line
         contentPane.add(howManyRows);
         contentPane.add(rows);
         contentPane.add(submit);
+
+        //2nd line
         contentPane.add(howManyColors);
         contentPane.add(colors);
         contentPane.add(clear);
+
+        //3rd line
         contentPane.add(sizeText);
         contentPane.add(size);
         contentPane.add(credits);
+
+        //4th line
         contentPane.add(emptyLabel);
         contentPane.add(error);
         contentPane.add(back);
 
-
     }
 
+    //shows an error message
     public void writeError(String text) {
         this.error.setText(text);
     }
 
+    //animations when the mouse is over
     @Override
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() instanceof JButton) {

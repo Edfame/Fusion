@@ -7,6 +7,8 @@ import java.awt.event.WindowEvent;
 
 public class Credits extends JFrame {
     public Credits() {
+
+        //Frame's proprieties
         setSize(700, 170);
         setLocation(300, 300);
         setResizable(false);
@@ -19,6 +21,7 @@ public class Credits extends JFrame {
             }
         });
 
+        //container that will have the info about the devs ^_^
         Container info = getContentPane();
         info.setLayout(new GridLayout(3, 1));
         JLabel worckInfo = new JLabel("Estre trabalho foi realizado no ambito da disciplina de Programação 2 pelos alunos:");

@@ -6,20 +6,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Window extends JFrame {
 
     private JLabel score;
-    private int numberOfColrs;
+    private int size;
+    private int numberOfRows;
+    private int numberOfColors;
+    private JButton[][] buttons;
 
     public Window(int numberOfRows, int numberOfColors, int size) {
 
-        this.numberOfColrs = numberOfColors;
+        this.numberOfColors = numberOfColors;
+        this.numberOfRows = numberOfRows;
+        this.size = size;
 
-        setTitle("Fusion v1.0");
+        //frame proprieties
+        setTitle("Fusion");
         setSize(size, size);
         setResizable(true);
         setLocationRelativeTo(null);
@@ -57,7 +61,7 @@ public class Window extends JFrame {
         JButton quitButton = new JButton("Quit");
         quitButton.setBackground(Color.RED);
 
-        //telling quitButton what to do
+        //telling quitButton what to do when pressed
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,14 +75,14 @@ public class Window extends JFrame {
         contentPaneCenter.setLayout(new GridLayout(numberOfRows, numberOfRows));
 
         //JButtons that will be the "pieces" of the game
-        JButton[][] buttons = new JButton[numberOfRows][numberOfRows];
+        buttons = new JButton[numberOfRows][numberOfRows];
 
         for (int index = 0; index < numberOfRows; index++) {
             for (int index2 = 0; index2 < numberOfRows; index2++) {
                 buttons[index][index2] = new JButton();
                 JButton button = buttons[index][index2];
 
-                button.setText("Y: " + (index + 1) + " X: " + (index2 + 1));
+                //button.setText("Y: " + (index + 1) + " X: " + (index2 + 1));
                 button.addActionListener(new ButtonHandler(buttons, numberOfRows));
                 button.setPreferredSize(new Dimension(size / numberOfRows, size / numberOfRows));
                 button.setBackground(randomColor(numberOfColors));
@@ -89,14 +93,31 @@ public class Window extends JFrame {
 
     }
 
-    public int getNumberOfColrs() {
-        return numberOfColrs;
+    public int getNumberOfRows() {
+        return numberOfRows;
     }
 
+    public int getWinSize() {
+        return size;
+    }
+
+    public int getNumberOfColors() {
+        return numberOfColors;
+    }
+
+    public JButton[][] getButtons() {
+        return buttons;
+    }
+    public String getScore(){
+        return score.getText();
+    }
+
+    //updates the score
     public void setScore(int newScoreText) {
         this.score.setText("" + (Integer.parseInt(this.score.getText()) + newScoreText));
     }
 
+    //generates a random color in a certain range
     public static Color randomColor(int numOfColors) {
         Color color;
 
@@ -121,31 +142,19 @@ public class Window extends JFrame {
                 color = Color.CYAN;
                 break;
             case 5:
-                color = Color.DARK_GRAY;
+                color = Color.RED;
                 break;
             case 6:
                 color = Color.GRAY;
                 break;
             case 7:
-                color = Color.LIGHT_GRAY;
+                color = Color.YELLOW;
                 break;
             case 8:
                 color = Color.MAGENTA;
                 break;
-            case 9:
-                color = Color.PINK;
-                break;
-            case 10:
-                color = Color.RED;
-                break;
-            case 11:
-                color = Color.WHITE;
-                break;
-            case 12:
-                color = Color.YELLOW;
-                break;
             default:
-                color = randomColor(numOfColors);
+                color = Color.PINK;
                 break;
         }
         return color;
