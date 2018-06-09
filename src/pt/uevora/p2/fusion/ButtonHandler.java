@@ -12,7 +12,6 @@ public class ButtonHandler implements ActionListener {
     private JButton[][] buttons;
     private int numberOfRows;
     private Map<String, String> toDelete = new HashMap<>();
-    private int score = 0;
 
     public ButtonHandler(JButton[][] buttons, int numberOfRows) {
         this.buttons = buttons;
@@ -61,8 +60,8 @@ public class ButtonHandler implements ActionListener {
                     yCord--;
                 }
             }
+            InicialWindow.win.setScore(toDelete.size()*toDelete.size());
             toDelete.clear();
-            InicialWindow.win.setScore(score);
         }
     }
 
@@ -75,7 +74,6 @@ public class ButtonHandler implements ActionListener {
         }
 
         toDelete.put(cords, buttons[buttonY][buttonX].getText());
-        score += 5;
 
         if (buttonY + 1 <= numberOfRows - 1) {
             if (buttons[buttonY + 1][buttonX].getBackground().equals(buttons[buttonY][buttonX].getBackground())) {
