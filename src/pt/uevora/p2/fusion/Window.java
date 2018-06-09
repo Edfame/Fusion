@@ -12,10 +12,13 @@ import java.util.Random;
 
 public class Window extends JFrame {
 
-    private List<Color> colorsUsed;
     private JLabel score;
+    private int numberOfColrs;
 
     public Window(int numberOfRows, int numberOfColors, int size) {
+
+        this.numberOfColrs = numberOfColors;
+
         setTitle("Fusion v1.0");
         setSize(size, size);
         setResizable(true);
@@ -70,20 +73,15 @@ public class Window extends JFrame {
         //JButtons that will be the "pieces" of the game
         JButton[][] buttons = new JButton[numberOfRows][numberOfRows];
 
-        colorsUsed = new ArrayList<>();
-
         for (int index = 0; index < numberOfRows; index++) {
             for (int index2 = 0; index2 < numberOfRows; index2++) {
                 buttons[index][index2] = new JButton();
                 JButton button = buttons[index][index2];
 
-                Color randomColor = randomColor(numberOfColors);
-                colorsUsed.add(randomColor);
-
                 button.setText("Y: " + (index + 1) + " X: " + (index2 + 1));
                 button.addActionListener(new ButtonHandler(buttons, numberOfRows));
                 button.setPreferredSize(new Dimension(size / numberOfRows, size / numberOfRows));
-                button.setBackground(randomColor);
+                button.setBackground(randomColor(numberOfColors));
                 //button.setBorderPainted(false);
                 contentPaneCenter.add(button);
             }
@@ -91,8 +89,8 @@ public class Window extends JFrame {
 
     }
 
-    public List<Color> getColorsUsed() {
-        return colorsUsed;
+    public int getNumberOfColrs() {
+        return numberOfColrs;
     }
 
     public void setScore(int newScoreText) {

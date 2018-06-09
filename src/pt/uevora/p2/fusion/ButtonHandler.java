@@ -49,7 +49,7 @@ public class ButtonHandler implements ActionListener {
                         e.printStackTrace();
                     }*/
                     if (yCord == 0) {
-                        buttons[yCord][xCord].setBackground(InicialWindow.win.getColorsUsed().get(new Random().nextInt(InicialWindow.win.getColorsUsed().size())));
+                        buttons[yCord][xCord].setBackground(Window.randomColor(InicialWindow.win.getNumberOfColrs()));
                         //System.out.println(InicialWindow.win.getColorsUsed().get(new Random().nextInt(InicialWindow.win.getColorsUsed().size())).toString());
                         break;
                     }
