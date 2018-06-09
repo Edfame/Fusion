@@ -52,8 +52,11 @@ public class OptionsWindow extends JFrame implements MouseListener {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    if (Integer.parseInt(colors.getText()) > 9) {
-                        throw new ArithmeticException("Number of Color is invalid, 2 <= Colors <= 9");
+                    if (Integer.parseInt(colors.getText()) > 9 || Integer.parseInt(colors.getText()) < 2) {
+                        throw new ArithmeticException("Number of Colors is invalid, 2 <= Colors <= 9");
+                    }
+                    if (Integer.parseInt(rows.getText()) < 2) {
+                        throw new ArithmeticException("Number of Rows/Columns is invalid, 2 <= Columns");
                     }
                     InicialWindow.newWin(Integer.parseInt(rows.getText()), Integer.parseInt(colors.getText()), Integer.parseInt(size.getText()));
                     dispose();
